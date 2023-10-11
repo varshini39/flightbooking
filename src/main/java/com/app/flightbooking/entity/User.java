@@ -1,5 +1,8 @@
 package com.app.flightbooking.entity;
 
+import com.app.flightbooking.util.BCryptPasswordDeserializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +26,8 @@ public class User {
     @Column(name="email_id")
     private String email_id;
     @Column(name="password")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonDeserialize(using = BCryptPasswordDeserializer.class )
     private String password;
 
     public User() { }
